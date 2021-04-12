@@ -42,12 +42,12 @@ import (
 	v1 "k8s.io/api/core/v1"
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/certificates"
+	"k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/util"
 	"k8s.io/cloud-provider-gcp/pkg/csrmetrics"
 	"k8s.io/cloud-provider-gcp/pkg/nodeidentity"
 	"k8s.io/cloud-provider-gcp/pkg/tpmattest"
 	"k8s.io/klog/v2"
-	certutil "k8s.io/kubernetes/pkg/apis/certificates/v1"
-	"k8s.io/kubernetes/pkg/controller/certificates"
 )
 
 const (
@@ -130,7 +130,7 @@ func (a *gkeApprover) handle(csr *capi.CertificateSigningRequest) error {
 	}
 	klog.Infof("approver got CSR %q", csr.Name)
 
-	x509cr, err := certutil.ParseCSR(csr.Spec.Request)
+	x509cr, err := util.ParseCSR(csr.Spec.Request)
 	if err != nil {
 		recordMetric(csrmetrics.ApprovalStatusParseError)
 		return fmt.Errorf("unable to parse csr %q: %v", csr.Name, err)
@@ -170,7 +170,7 @@ func (a *gkeApprover) handle(csr *capi.CertificateSigningRequest) error {
 			} else {
 				recordValidatorMetric(csrmetrics.ApprovalStatusSARReject)
 			}
-			return certificates.IgnorableError("recognized csr %q as %q but subject access review was not approved", csr.Name, r.name)
+			return util.IgnorableError("recognized csr %q as %q but subject access review was not approved", csr.Name, r.name)
 		}
 		klog.Infof("validator %q: SubjectAccessReview approved for CSR %q", r.name, csr.Name)
 		if r.preApproveHook != nil {

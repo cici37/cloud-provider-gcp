@@ -6,13 +6,13 @@ go_library(
     importpath = "k8s.io/cloud-provider-gcp/pkg/csrapproval",
     visibility = ["//visibility:public"],
     deps = [
+        "//cmd/gcp-controller-manager/util:go_default_library",
         "//pkg/csrmetrics:go_default_library",
         "//vendor/k8s.io/api/authorization/v1beta1:go_default_library",
         "//vendor/k8s.io/api/certificates/v1beta1:go_default_library",
         "//vendor/k8s.io/apimachinery/pkg/apis/meta/v1:go_default_library",
         "//vendor/k8s.io/client-go/kubernetes:go_default_library",
         "//vendor/k8s.io/klog/v2:go_default_library",
-        "//vendor/k8s.io/kubernetes/pkg/apis/certificates/v1beta1:go_default_library",
     ],
 )
 

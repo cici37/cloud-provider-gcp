@@ -40,7 +40,6 @@ import (
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/util/workqueue"
 	"k8s.io/klog/v2"
-	"k8s.io/kubernetes/pkg/controller"
 )
 
 const (
@@ -50,6 +49,7 @@ const (
 )
 
 var errNoMetadata = fmt.Errorf("instance did not have 'kube-labels' metadata")
+
 
 type nodeAnnotator struct {
 	c          clientset.Interface
@@ -164,7 +164,7 @@ func (na *nodeAnnotator) update(obj, oldObj interface{}) {
 }
 
 func (na *nodeAnnotator) enqueue(obj interface{}) {
-	key, err := controller.KeyFunc(obj)
+	key, err := cache.DeletionHandlingMetaNamespaceKeyFunc(obj)
 	if err != nil {
 		utilruntime.HandleError(fmt.Errorf("couldn't get key for object %+v: %v", obj, err))
 		return

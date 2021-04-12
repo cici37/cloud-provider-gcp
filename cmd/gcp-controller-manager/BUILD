@@ -36,7 +36,9 @@ go_library(
         "//cmd/gcp-controller-manager:__subpackages__",
     ],
     deps = [
+        "//cmd/gcp-controller-manager/certificates:go_default_library",
         "//cmd/gcp-controller-manager/healthz:go_default_library",
+        "//cmd/gcp-controller-manager/util:go_default_library",
         "//pkg/csrmetrics:go_default_library",
         "//pkg/nodeidentity:go_default_library",
         "//pkg/tpmattest:go_default_library",
@@ -85,11 +87,7 @@ go_library(
         "//vendor/k8s.io/component-base/version/verflag:go_default_library",
         "//vendor/k8s.io/controller-manager/pkg/clientbuilder:go_default_library",
         "//vendor/k8s.io/klog/v2:go_default_library",
-        "//vendor/k8s.io/kubernetes/pkg/api/legacyscheme:go_default_library",
         "//vendor/k8s.io/kubernetes/pkg/apis/certificates/install:go_default_library",
-        "//vendor/k8s.io/kubernetes/pkg/apis/certificates/v1:go_default_library",
-        "//vendor/k8s.io/kubernetes/pkg/controller:go_default_library",
-        "//vendor/k8s.io/kubernetes/pkg/controller/certificates:go_default_library",
         "//vendor/k8s.io/legacy-cloud-providers/gce:go_default_library",
     ],
 )
@@ -107,6 +105,7 @@ go_test(
     ],
     embed = [":go_default_library"],
     deps = [
+        "//cmd/gcp-controller-manager/util:go_default_library",
         "//pkg/nodeidentity:go_default_library",
         "//pkg/tpmattest:go_default_library",
         "//vendor/github.com/google/go-tpm/tpm2:go_default_library",
@@ -128,6 +127,5 @@ go_test(
         "//vendor/k8s.io/client-go/tools/record:go_default_library",
         "//vendor/k8s.io/client-go/util/workqueue:go_default_library",
         "//vendor/k8s.io/klog/v2:go_default_library",
-        "//vendor/k8s.io/kubernetes/pkg/apis/certificates/v1:go_default_library",
     ],
 )

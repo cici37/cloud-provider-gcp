@@ -22,7 +22,7 @@ import (
 	"k8s.io/client-go/informers"
 	clientset "k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/tools/record"
-	"k8s.io/kubernetes/pkg/controller/certificates"
+	"k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/certificates"
 )
 
 type controllerContext struct {

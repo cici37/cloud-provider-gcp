@@ -43,12 +43,12 @@ import (
 	rl "k8s.io/client-go/tools/leaderelection/resourcelock"
 	"k8s.io/client-go/tools/record"
 	"k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/healthz"
+	legacyscheme "k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/util"
 	componentbaseconfig "k8s.io/component-base/config"
 	"k8s.io/component-base/config/options"
 	"k8s.io/component-base/version/verflag"
 	"k8s.io/controller-manager/pkg/clientbuilder"
 	"k8s.io/klog/v2"
-	"k8s.io/kubernetes/pkg/api/legacyscheme"
 )
 
 const (

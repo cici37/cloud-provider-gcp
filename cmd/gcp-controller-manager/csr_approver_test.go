@@ -47,10 +47,10 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/client-go/kubernetes/fake"
 	testclient "k8s.io/client-go/testing"
+	certutil "k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/util"
 	"k8s.io/cloud-provider-gcp/pkg/nodeidentity"
 	"k8s.io/cloud-provider-gcp/pkg/tpmattest"
 	"k8s.io/klog/v2"
-	certutil "k8s.io/kubernetes/pkg/apis/certificates/v1"
 )
 
 func init() {

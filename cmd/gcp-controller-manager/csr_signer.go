@@ -31,12 +31,12 @@ import (
 	apiserveroptions "k8s.io/apiserver/pkg/server/options"
 	"k8s.io/apiserver/pkg/util/webhook"
 	"k8s.io/client-go/rest"
+	"k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/certificates"
+	_ "k8s.io/kubernetes/pkg/apis/certificates/install" // Install certificates API group.
+	certutil "k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/util"
+	legacyscheme "k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/util"
 	"k8s.io/cloud-provider-gcp/pkg/csrmetrics"
 	"k8s.io/klog/v2"
-	"k8s.io/kubernetes/pkg/api/legacyscheme"
-	_ "k8s.io/kubernetes/pkg/apis/certificates/install" // Install certificates API group.
-	certutil "k8s.io/kubernetes/pkg/apis/certificates/v1"
-	"k8s.io/kubernetes/pkg/controller/certificates"
 )
 
 var (

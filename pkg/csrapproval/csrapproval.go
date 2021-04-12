@@ -26,9 +26,9 @@ import (
 	authorization "k8s.io/api/authorization/v1beta1"
 	capi "k8s.io/api/certificates/v1beta1"
 	clientset "k8s.io/client-go/kubernetes"
+	certutil "k8s.io/cloud-provider-gcp/cmd/gcp-controller-manager/util"
 	"k8s.io/cloud-provider-gcp/pkg/csrmetrics"
 	"k8s.io/klog/v2"
-	certutil "k8s.io/kubernetes/pkg/apis/certificates/v1beta1"
 )
 
 var nodeClientKeyUsages = []capi.KeyUsage{
